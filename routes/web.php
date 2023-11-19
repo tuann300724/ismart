@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
 
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,8 @@ Route::get("/",[viewController::class,"index"])->name("home.home");
 
 Route::prefix("/home")->group(function(){
     // Route::get("/",[ViewController::class,"index"])->name("home.home");
+    Route::get("/logout", [UserController::class, "logout"])
+    ->name("logout");
     Route::get("/detail_product",[ViewController::class,"dp"])->name("home.dp");
     Route::get("/detail_blog",[ViewController::class,"db"])->name("home.db");
     Route::get("/checkout",[ViewController::class,"checkout"])->name("home.checkout");
@@ -32,7 +35,7 @@ Route::prefix("/home")->group(function(){
     Route::get("/contract",[ViewController::class,"contract"])->name("home.contract");
 });
 
-
+Route::group(["middleware"=>"admin_auth"],function(){
 Route::prefix("/admin/pages")->group(function(){
     Route::get("/",[ViewController::class,"lp"])->name("admin.pages.lp");
     Route::get("/add_cat",[ViewController::class,"ac"])->name("admin.pages.ac");
@@ -55,11 +58,17 @@ Route::prefix("/admin/pages")->group(function(){
     Route::get("/menu",[ViewController::class,"menu"])->name("admin.pages.menu");
     Route::get("/user",[ViewController::class,"user"])->name("admin.pages.user");
 
-
+});
 });
 
 Route::prefix("/Login")->group(function(){
     Route::get("/login",[ViewController::class,"login"])->name("Login.lg");
+    Route::post("/login", [UserController::class, "loglog"])
+        ->name("login.check");
+        Route::get("/create",[UserController::class,"create"])
+        ->name("login.create");
+        Route::post("/create",[UserController::class,"store"])
+        ->name("login.store");
     Route::get("/register",[ViewController::class,"register"])->name("Login.re");
     Route::get("/send_mail_resetpass",[ViewController::class,"sendmail"])->name("Login.sendmail");
     Route::get("/newpass",[ViewController::class,"pass"])->name("Login.pass");

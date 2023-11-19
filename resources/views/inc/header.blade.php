@@ -46,6 +46,13 @@
                                     <li>
                                         <a href={{route('Login.lg')}} title="">Đăng nhập</a>
                                     </li>
+                                    <li>
+                                        @if (session("userInfo"))
+                                        <span class="text-success" > Welcome: {{session("userInfo")["name"]}}</span>
+                                        <a class = "btn btn-warning" href="{{route("logout")}}">logout</a>
+                                        @endif
+                                    </li>
+                                  
                                 </ul>
                             </div>
                         </div>

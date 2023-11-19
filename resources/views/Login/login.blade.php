@@ -6,19 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login </title>
   <link href={{asset("login/style.css")}} rel="stylesheet" type="text/css"/>
+  {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script> --}}
 
 </head>
 <body>
   <div class="wrapper">
-    <form action="#">
+    <form method="post" action={{route("login.check")}}>
+      @csrf
       <h2>Login</h2>
         <div class="input-field">
-        <input type="email" required>
+        <input type="email" name="email" >
         <label>Enter your email</label>
+        @error('email')
+        <div class="alert alert-danger">
+            {{ $message }}
+        </div>
+    @enderror
       </div>
       <div class="input-field">
-        <input type="password" required>
+        <input type="password" name="password" >
         <label>Enter your password</label>
+        @error('password')
+        <div class="alert alert-danger">
+            {{ $message }}
+        </div>
+    @enderror
       </div>
       <div class="forget">
         <label for="remember">
