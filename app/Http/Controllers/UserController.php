@@ -85,7 +85,7 @@ class UserController extends Controller
         $user->role = $request->role;
         $user->status = $request->status;
         $user->save();
-        return redirect()->route("Login.lg")->with("success", "User created successfully.");
+        return redirect()->route("admin.pages.user")->with("success", "User created successfully.");
 
     }
     public function logout()

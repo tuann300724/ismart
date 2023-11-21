@@ -57,18 +57,12 @@
             </div>
             <div class="section" id="detail-page">
                 <div class="section-detail">
-                    <div class="filter-wp clearfix">
-                        <form method="GET" class="form-s fl-right">
-                            <input type="text" name="s" id="s">
-                            <input type="submit" name="sm_s" value="Tìm kiếm">
-                        </form>
-                    </div>
 
                     <div class="table-responsive">
-                        <table class="table list-table-wp">
+                        <table id="example" class="table list-table-wp">
                             <thead>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                           
                                     <td><span class="thead-text">STT</span></td>
                                     <td><span class="thead-text">Name</span></td>
                                     <td><span class="thead-text">Email</span></td>
@@ -80,8 +74,7 @@
                             <tbody>
                                 @foreach ($users as $user)
                                 <tr>
-                                    <td><input type="checkbox" name="checkItem" class="checkItem"></td>
-                                   
+ 
                                  
                                     <td>{{$user->id}}</td>
                                     <td>{{$user->name}}</td>
@@ -110,7 +103,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td><input type="checkbox" name="checkAll" id="checkAll"></td>
+                                 
                                     <td><span class="thead-text">STT</span></td>
                                     <td><span class="thead-text">Name</span></td>
                                     <td><span class="thead-text">Email</span></td>
@@ -158,7 +151,9 @@
         });
       </script>
 
-
+<script>
+    new DataTable('#example');
+</script>
 
 
 

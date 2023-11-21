@@ -16,6 +16,11 @@
         <script src={{asset("admin/js/plugins/ckeditor/ckeditor.js")}} type="text/javascript"></script>
         <script src={{asset("admin/js/main.js")}}type="text/javascript"></script>
         <script src={{asset("admin/js/js.js")}}type="text/javascript"></script>
+
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <title>@yield('title', 'Quản lý ISMART')</title>
@@ -73,7 +78,7 @@
                                         <a href={{route('admin.pages.lo')}} title="">Danh sách đơn hàng</a> 
                                     </li>
                                     <li>
-                                        <a href={{route('admin.pages.lo')}} title="">Danh sách khách hàng</a> 
+                                        <a href={{route('admin.pages.lcus')}} title="">Danh sách khách hàng</a> 
                                     </li>
                                 </ul>
                             </li>
@@ -86,11 +91,13 @@
                                 <div id="thumb-circle" class="fl-left">
                                     <img src={{asset("admin/images/img-admin.png")}}>
                                 </div>
-                                <h3 id="account" class="fl-right">Admin</h3>
+                                @if (session("userInfo"))
+                                <h3 id="account" class="fl-right"> {{ session("userInfo")["name"] }}</h3>
+                                @endif
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a href={{route('admin.pages.ia')}} title="Thông tin cá nhân">Thông tin tài khoản</a></li>
-                                <li><a href="#" title="Thoát">Thoát</a></li>
+                                <li><a href="{{ route('logout') }}" title="Thoát">Thoát</a></li>
                             </ul>
                         </div>
                     </div>
