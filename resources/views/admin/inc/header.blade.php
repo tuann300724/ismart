@@ -16,6 +16,8 @@
         <script src={{asset("admin/js/plugins/ckeditor/ckeditor.js")}} type="text/javascript"></script>
         <script src={{asset("admin/js/main.js")}}type="text/javascript"></script>
         <script src={{asset("admin/js/js.js")}}type="text/javascript"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         <title>@yield('title', 'Quản lý ISMART')</title>
     </head>
  <body>

@@ -51,8 +51,8 @@
         <div id="content">
             <div class="section" id="title-page">
                 <div class="clearfix">
-                    <h3 id="index" class="fl-left">Danh sách người dùng</h3>
-                    <a href="?page=add_cat" title="" id="add-new" class="fl-left">Thêm mới</a>
+                    <h3 id="index" class="fl-left">User list</h3>
+                    <a href="{{route("admin.pages.user_create")}}" title="" id="add-new" class="fl-left">Thêm mới</a>
                 </div>
             </div>
             <div class="section" id="detail-page">
@@ -70,40 +70,53 @@
                                 <tr>
                                     <td><input type="checkbox" name="checkAll" id="checkAll"></td>
                                     <td><span class="thead-text">STT</span></td>
-                                    <td><span class="thead-text">Tên</span></td>
+                                    <td><span class="thead-text">Name</span></td>
                                     <td><span class="thead-text">Email</span></td>
-                                    <td><span class="thead-text">Trạng thái</span></td>
-                                    <td><span class="thead-text">Hoạt Động</span></td>
+                                    <td><span class="thead-text">Status</span></td>
+                                    <td><span class="thead-text">Role</span></td>
+                                    <td><span class="thead-text">Delete</span></td>
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($users as $user)
                                 <tr>
                                     <td><input type="checkbox" name="checkItem" class="checkItem"></td>
-                                    <td><span class="tbody-text">1</h3></span>
-                                    <td class="clearfix">
-                                        <div class="tb-title fl-left">
-                                            <a href="" title="">Bacon ipsum dolor amet hamburger frankfurter cow biltong pork loin capicola</a>
-                                        </div>
-                                        <ul class="list-operation fl-right">
-                                            <li><a href="" title="Sửa" class="edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></li>
-                                            <li><a href="" title="Xóa" class="delete"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
-                                        </ul>
+                                   
+                                 
+                                    <td>{{$user->id}}</td>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->email}}</td>
+                                    <td>
+                                        <form action="{{ route('update-status', ['id' => $user->id]) }}" method="post">
+                                          @csrf
+                                          @method('PUT')
+                                          <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" name="status" value="1" {{ $user->status == 1 ? 'checked' : '' }}>
+                                          </div>                              
+                                      </form>
                                     </td>
-                                    <td><span class="tbody-text">Danh mục 1</span></td>
-                                    <td><span class="tbody-text">Hoạt động</span></td>
-                                    <td><span class="tbody-text">Admin</span></td>
-                                    <td><span class="tbody-text">12-07-2016</span></td>
+                                    <td>{{$user->role}}</td>
+                                    <td>
+                                        <form action="{{ route('delete-user', ['id' => $user->id]) }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button style="background-color: transparent; border: none; color:red" type="submit">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
+                                    @endforeach
+                                
                                 
                             </tbody>
                             <tfoot>
                                 <tr>
                                     <td><input type="checkbox" name="checkAll" id="checkAll"></td>
                                     <td><span class="thead-text">STT</span></td>
-                                    <td><span class="thead-text">Tên</span></td>
+                                    <td><span class="thead-text">Name</span></td>
                                     <td><span class="thead-text">Email</span></td>
-                                    <td><span class="thead-text">Trạng thái</span></td>
-                                    <td><span class="thead-text">Hoạt Động</span></td>
+                                    <td><span class="thead-text">Status</span></td>
+                                    <td><span class="thead-text">Role</span></td>
+                                    <td><span class="thead-text">Delete</span></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -134,11 +147,16 @@
             </div>
         </div>   
     </div>
- 
-  
 
-
-
+    
+    <script>
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                this.closest('form').submit();
+            });
+        });
+      </script>
 
 
 

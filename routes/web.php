@@ -57,8 +57,12 @@ Route::prefix("/admin/pages")->group(function(){
     Route::get("/list_slider",[ViewController::class,"ls"])->name("admin.pages.ls");
     Route::get("/list_widget",[ViewController::class,"lw"])->name("admin.pages.lw");
     Route::get("/menu",[ViewController::class,"menu"])->name("admin.pages.menu");
-    Route::get("/user",[ViewController::class,"user"])->name("admin.pages.user");
-
+    Route::get("/user",[UserController::class,"index"])->name("admin.pages.user");
+    Route::get("/add_user",[UserController::class,"create"])->name("admin.pages.user_create");
+    Route::post("/add_user",[UserController::class,"store"])->name("admin.pages.user_store");
+    Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('delete-user');
+    Route::put('/update-status/{id}',[UserController::class,"updateStatus"])
+            ->name('update-status');
 });
 });
 
@@ -74,6 +78,7 @@ Route::prefix("/Login")->group(function(){
         Route::post("/create",[UserController::class,"store"])
         ->name("login.store");
     Route::get("/register",[ViewController::class,"register"])->name("Login.re");
+    Route::post("/register",[ViewController::class,"create"])->name("Login.create");
     Route::get("/send_mail_resetpass",[ViewController::class,"sendmail"])->name("Login.sendmail");
     Route::get("/newpass",[ViewController::class,"pass"])->name("Login.pass");
     Route::post("/newpass",[EmailController::class,"update"])->name("password.update");

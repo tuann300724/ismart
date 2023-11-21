@@ -13,6 +13,17 @@ class UserController extends Controller
         $users = User::all();
         return view("admin.pages.user", compact("users"));
     }
+    public function destroy($id)
+    {
+        // Find the user by ID
+        $user = User::find($id);
+
+        if (!$user) {
+            return redirect()->back()->withErrors('User not found');
+        }
+        $user->delete();
+        return redirect()->back()->with('success', 'User deleted successfully');
+    }
     public function loglog(Request $request)
     {
         $request->validate([
@@ -24,7 +35,6 @@ class UserController extends Controller
         $user = User::where("email", $email)->first();
         $status = $request->status;
         if ($user) {
-
             if (Hash::check($password, $user->password)) {
                 session()->put('userInfo', $user->toArray());
 
@@ -48,7 +58,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view("Login.create");
+        return view("admin.pages.add_user");
     }
     public function store(Request $request)
     {
@@ -94,5 +104,21 @@ class UserController extends Controller
             $pass->save();
         }
 
+    }
+
+    public function updateStatus($id)
+    {
+        $user = User::find($id);
+    
+        if (!$user) {
+            // Handle the case where the user is not found.
+            return redirect()->back()->with('error', 'User not found.');
+        }
+    
+        $status = request('status') == 1 ? 1 : 0; // Update status based on the checkbox state
+    
+        $user->update(['status' => $status]);
+    
+        return redirect()->back()->with('success', 'User status updated successfully.');
     }
 }

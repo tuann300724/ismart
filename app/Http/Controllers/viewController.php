@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class viewController extends Controller
 {
@@ -125,10 +127,7 @@ class viewController extends Controller
     {
         return view('admin.pages.menu');
     }
-    public function user()
-    {
-        return view('admin.pages.user');
-    }
+    
     public function login(){      
         return view("Login.login");
        
@@ -136,6 +135,32 @@ class viewController extends Controller
     public function register()
     {
         return view("Login.register");
+    }
+    public function create(Request $request)
+    {
+        $request->validate([
+            "name"=> "required",
+            "email"=> "bail|required|email",
+            "password"=> "bail|required|min:5|max:20",
+        ],[
+            "required"=>":attribute cannot be blank.",
+            "min"=>":attribute must be more than 4 characters.",
+            "max"=>":attribute must be less than 20 characters.",
+            "email"=>":attribute must be email validation form.",
+        ]);
+        //băm pw ra khi user nhập vào để k bị ra chuỗi kí tự & số
+        // $password = $request->password;
+        // $hasPassword = Hash::make($password);
+        $hasPassword = Hash::make($request->password);
+        $user = new User(); //tao doi tuong
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $hasPassword;
+        $user->role = "User";
+        $user->status = 1;
+        $user->save();
+        return redirect()->route("Login.lg")->with("success","created successfully.");
+
     }
     public function sendmail()
     {

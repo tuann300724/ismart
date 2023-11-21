@@ -10,20 +10,32 @@
 </head>
 <body>
   <div class="wrapper">
-    <form action="#">
+    <form method="post" action="{{route("Login.create")}}">
+      @csrf
       <h2>Register account</h2>
       <div class="input-field">
-        <input type="text" required>
-        <label>Enter your Name</label>
+        <input type="text" name="name" value="{{old('name')}}">
+        <label>Enter your Name</label>  
       </div>
+      @error('name')
+      <span style="color: red">{{ $message }}</span>
+  @enderror
         <div class="input-field">
-        <input type="email" required>
+        <input type="email" name="email" value="{{old('email')}}">
         <label>Enter your email</label>
+        
       </div>
+      @error('email')
+        <span  style="color: red">{{ $message }}</span>
+    @enderror
       <div class="input-field">
-        <input type="password" required>
+        <input type="password" name="password">
         <label>Enter your password</label>
+       
       </div>
+      @error('password')
+      <span style="color: red">{{ $message }}</span>
+  @enderror
       <button type="submit">Log In</button>
       <div class="register">
         <p>Have an account? <a href= {{route("Login.lg")}}>Turn back</a></p>
