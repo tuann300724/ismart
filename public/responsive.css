@@ -102,6 +102,23 @@
         border-top: 1px solid #fff;
         border-bottom: 1px solid #979797;
     }
+    #main-menu-respon li span {
+        position: relative;
+    }
+
+    #main-menu-respon li span{
+        display: block;
+        padding: 12px 15px;
+        color: #000;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    #main-menu-respon>li>span {
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #979797;
+    }
+  
 
     #main-menu-respon li .sub-menu li a {
         border-top: 1px solid #fff;

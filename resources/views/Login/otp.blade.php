@@ -10,18 +10,14 @@
 </head>
 <body>
   <div class="wrapper">
-    <form method="post" action="{{route("Login.sm")}}">
+    <form action="{{route('Login.sendotp')}}" method="POST">
       @csrf
-      <h2>Reset password</h2>
-        <div class="input-field">
-        <input type="enail" name="email"  >
-        <label>Enter your email</label>
+      <h2>Enter otp</h2>
+      <div class="input-field">
+        <input type="number" name="otp" required>
+        <label>Enter your OTP</label>
       </div>
-
-      <button type="submit">Send</button>
-      <div class="register">
-        <p>Don't have an account? <a href={{route("Login.re")}}>Register</a></p>
-      </div>
+      <button type="submit">Update</button>
     </form>
   </div>
 </body>

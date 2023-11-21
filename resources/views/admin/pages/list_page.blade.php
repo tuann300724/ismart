@@ -4,7 +4,47 @@
 @section('content')
 <div id="main-content-wp" class="list-post-page">
     <div class="wrap clearfix">
-       
+        <div id="sidebar" class="fl-left">
+            <ul id="sidebar-menu">
+                <li class="nav-item">
+                    <a href={{route("admin.pages.lpage")}} title="" class="nav-link nav-toggle">
+                        <span class="fa fa-map icon"></span>
+                        <span class="title">Trang</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route("admin.pages.lp")}}" title="" class="nav-link nav-toggle">
+                        <span class="fa fa-pencil-square-o icon"></span>
+                        <span class="title">Bài viết</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route("admin.pages.lproduct")}}" title="" class="nav-link nav-toggle">
+                        <span class="fa fa-product-hunt icon"></span>
+                        <span class="title">Sản phẩm</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route("admin.pages.lo")}}" title="" class="nav-link nav-toggle">
+                        <span class="fa fa-database icon"></span>
+                        <span class="title">Bán hàng</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route("admin.pages.do")}}" title="" class="nav-link nav-toggle">
+                        <span class="fa fa-database icon"></span>
+                        <span class="title">Danh sách đơn hàng</span>
+                    </a>
+                </li>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route("admin.pages.user")}}" title="" class="nav-link nav-toggle">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                        <span class="title">User</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
         <div id="content" class="fl-right">           
             <div class="section" id="title-page">
                 <div class="clearfix">

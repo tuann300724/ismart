@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>ISMART STORE</title>
+        <title>SMART GEAR STORE</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href={{asset("css/bootstrap/bootstrap-theme.min.css")}} rel="stylesheet" type="text/css"/>
@@ -17,7 +17,7 @@
         <script src={{asset("js/bootstrap/bootstrap.min.js")}} type="text/javascript"></script>
         <script src={{asset("js/carousel/owl.carousel.js")}} type="text/javascript"></script>
         <script src={{asset("js/main.js")}} type="text/javascript"></script>
-        <title>@yield('title', 'ISMART STORE')</title>
+        <title>@yield('title', 'SMART GEAR STORE')</title>
     </head>
     <body>
         <div id="site">
@@ -43,16 +43,22 @@
                                     <li>
                                         <a href={{route('home.contract')}} title="">Liên hệ</a>
                                     </li>
-                                    <li>
-                                        <a href={{route('Login.lg')}} title="">Đăng nhập</a>
-                                    </li>
-                                    <li>
-                                        @if (session("userInfo"))
-                                        <span class="text-success" > Welcome: {{session("userInfo")["name"]}}</span>
-                                        <a class = "btn btn-warning" href="{{route("logout")}}">logout</a>
+                                        @if (!session("userInfo"))
+                                            <li>
+                                                <a href="{{ route('Login.lg') }}" title="">Đăng nhập</a>
+                                            </li>
+                                        @else
+                                            <li>
+                                                <span class="info">Welcome: {{ session("userInfo")["name"] }}</span>
+                                            </li>
+                                            <li>
+                                                <a class="logout" href="{{ route('logout') }}">
+                                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                                </a>
+                                            </li>
                                         @endif
-                                    </li>
-                                  
+
+                                    
                                 </ul>
                             </div>
                         </div>
@@ -130,8 +136,8 @@
                     <div id="foot-body">
                         <div class="wp-inner clearfix">
                             <div class="block" id="info-company">
-                                <h3 class="title">ISMART</h3>
-                                <p class="desc">ISMART luôn cung cấp luôn là sản phẩm chính hãng có thông tin rõ ràng, chính sách ưu đãi cực lớn cho khách hàng có thẻ thành viên.</p>
+                                <h3 class="title">SMART GEAR</h3>
+                                <p class="desc">SMART GEAR luôn cung cấp luôn là sản phẩm chính hãng có thông tin rõ ràng, chính sách ưu đãi cực lớn cho khách hàng có thẻ thành viên.</p>
                                 <div id="payment">
                                     <div class="thumb">
                                         <img src={{asset("images/img-foot.png")}} alt="">
@@ -148,7 +154,7 @@
                                         <p>0987.654.321 - 0989.989.989</p>
                                     </li>
                                     <li>
-                                        <p>ismart@gmail.com</p>
+                                        <p>SMART GEAR@gmail.com</p>
                                     </li>
                                 </ul>
                             </div>
@@ -189,7 +195,7 @@
                 </div>
                 </div>
                 <div id="menu-respon">
-                    <a href={{route('home.home')}} title="" class="logo">ismart</a>
+                    <a href={{route('home.home')}} title="" class="logo">SMART GEAR</a>
                     <div id="menu-respon-wp">
                         <ul class="" id="main-menu-respon">
                             <li>
@@ -232,6 +238,15 @@
                             <li>
                                 <a href="{{route('home.contract')}}" title>Liên hệ</a>
                             </li>
+                            @if (session("userInfo"))
+                                    <li>                                     
+                                        <span class="info" > Welcome: {{session("userInfo")["name"]}}</span>
+                                        <a class = "logout" href="{{route("logout")}}">
+                                            logout
+                                        </a>   
+                                    </li>
+                                    
+                            @endif
                         </ul>
                     </div>
                 </div>

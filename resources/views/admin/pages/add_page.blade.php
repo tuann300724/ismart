@@ -4,7 +4,7 @@
 @section('content')
 <div id="main-content-wp" class="add-cat-page">
     <div class="wrap clearfix">
-        <?php require 'inc/sidebar.php'; ?>
+     
         <div id="content" class="fl-right">      
             <div class="section" id="title-page">
                 <div class="clearfix">

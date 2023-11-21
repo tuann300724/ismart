@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmailController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ViewController;
 
@@ -63,6 +64,9 @@ Route::prefix("/admin/pages")->group(function(){
 
 Route::prefix("/Login")->group(function(){
     Route::get("/login",[ViewController::class,"login"])->name("Login.lg");
+    Route::get("/otp",[EmailController::class,"viewotp"])->name("Login.viewotp");
+    Route::post("/otp",[EmailController::class,"sendotp"])->name("Login.sendotp");
+    Route::post("/send_mail_resetpass",[EmailController::class,"send_mail"])->name("Login.sm");
     Route::post("/login", [UserController::class, "loglog"])
         ->name("login.check");
         Route::get("/create",[UserController::class,"create"])
@@ -72,5 +76,6 @@ Route::prefix("/Login")->group(function(){
     Route::get("/register",[ViewController::class,"register"])->name("Login.re");
     Route::get("/send_mail_resetpass",[ViewController::class,"sendmail"])->name("Login.sendmail");
     Route::get("/newpass",[ViewController::class,"pass"])->name("Login.pass");
+    Route::post("/newpass",[EmailController::class,"update"])->name("password.update");
 
 });

@@ -6,6 +6,20 @@
 #head-top #main-menu li {
     float: left;
 }
+#head-top #main-menu li i{
+    font-size: 20px;
+    width: 37px;
+    height: 37px;
+    line-height: 33px;
+    text-align: center;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+#head-top #main-menu li span{
+    display: block;
+    color: #fff;
+    padding: 10px 15px;
+}
 #logosmartgear{
     max-width: 170px;
 }
