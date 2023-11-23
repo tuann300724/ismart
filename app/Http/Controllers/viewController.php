@@ -139,7 +139,10 @@ class viewController extends Controller
     public function create(Request $request)
     {
         $request->validate([
-            "name"=> "required",
+            "fullname"=> "required",
+            "username"=> "required",
+            "phone"=> "required",
+            "address"=> "required",
             "email"=> "bail|required|email",
             "password"=> "bail|required|min:5|max:20",
         ],[
@@ -153,7 +156,10 @@ class viewController extends Controller
         // $hasPassword = Hash::make($password);
         $hasPassword = Hash::make($request->password);
         $user = new User(); //tao doi tuong
-        $user->name = $request->name;
+        $user->fullname = $request->fullname;
+        $user->username = $request->username;
+        $user->address = $request->address;
+        $user->phone = $request->phone;
         $user->email = $request->email;
         $user->password = $hasPassword;
         $user->role = "User";

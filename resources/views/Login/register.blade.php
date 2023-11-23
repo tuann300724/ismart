@@ -14,11 +14,32 @@
       @csrf
       <h2>Register account</h2>
       <div class="input-field">
-        <input type="text" name="name" value="{{old('name')}}">
-        <label>Enter your Name</label>  
+        <input type="text" name="fullname" value="{{old('fullname')}}">
+        <label>Enter your Fullname</label>  
       </div>
-      @error('name')
+      @error('fullname')
       <span style="color: red">{{ $message }}</span>
+  @enderror
+  <div class="input-field">
+    <input type="text" name="username" value="{{old('username')}}">
+    <label>Enter your User name</label>  
+    </div>
+  @error('username')
+    <span style="color: red">{{ $message }}</span>
+  @enderror
+  <div class="input-field">
+    <input type="number" name="phone" value="{{old('phone')}}">
+    <label>Enter your Phone number</label>  
+    </div>
+  @error('phone')
+    <span style="color: red">{{ $message }}</span>
+  @enderror
+  <div class="input-field">
+    <input type="text" name="address" value="{{old('address')}}">
+    <label>Enter your Address</label>  
+    </div>
+  @error('address')
+    <span style="color: red">{{ $message }}</span>
   @enderror
         <div class="input-field">
         <input type="email" name="email" value="{{old('email')}}">
@@ -36,7 +57,7 @@
       @error('password')
       <span style="color: red">{{ $message }}</span>
   @enderror
-      <button type="submit">Log In</button>
+      <button type="submit">sign up</button>
       <div class="register">
         <p>Have an account? <a href= {{route("Login.lg")}}>Turn back</a></p>
       </div>

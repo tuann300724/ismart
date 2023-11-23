@@ -49,7 +49,7 @@
                                             </li>
                                         @else
                                             <li>
-                                                <span class="info">Welcome: {{ session("userInfo")["name"] }}</span>
+                                                <span class="info">Welcome: {{ session("userInfo")["username"] }}</span>
                                             </li>
                                             <li>
                                                 <a class="logout" href="{{ route('logout') }}">
@@ -240,7 +240,7 @@
                             </li>
                             @if (session("userInfo"))
                                     <li>                                     
-                                        <span class="info" > Welcome: {{session("userInfo")["name"]}}</span>
+                                        <span class="info" > Welcome: {{session("userInfo")["username"]}}</span>
                                         <a class = "logout" href="{{route("logout")}}">
                                             logout
                                         </a>   
